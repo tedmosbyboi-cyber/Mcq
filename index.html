@@ -6,81 +6,322 @@
 <title>MCQ Kinh tế chính trị — Luyện đề</title>
 <style>
 :root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--line:#e4e7ec;--accent:#4f46e5;--ok:#087443;--bad:#b42318}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}
-.wrap{max-width:760px;margin:auto;padding:18px 14px 40px} header{padding:8px 2px 16px}
-h1{font-size:23px;margin:0 0 5px} .sub{color:var(--muted);font-size:14px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}
+.wrap{max-width:760px;margin:auto;padding:18px 14px 40px}
+header{padding:8px 2px 16px}
+h1{font-size:23px;margin:0 0 5px}
+.sub{color:var(--muted);font-size:14px}
 .panel,.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 3px 15px rgba(16,24,40,.05)}
-.panel{padding:14px;margin-bottom:14px} .row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.panel{padding:14px;margin-bottom:14px}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 select,button{font:inherit;border-radius:11px;padding:10px 12px;border:1px solid var(--line);background:#fff}
-button{cursor:pointer} .primary{background:var(--accent);color:white;border-color:var(--accent);font-weight:700}
-.card{padding:20px} .top{display:flex;justify-content:space-between;color:var(--muted);font-size:14px;margin-bottom:14px}
+button{cursor:pointer}
+button:disabled{opacity:.55;cursor:default}
+.primary{background:var(--accent);color:white;border-color:var(--accent);font-weight:700}
+.card{padding:20px}
+.top{display:flex;justify-content:space-between;color:var(--muted);font-size:14px;margin-bottom:14px}
 .q{font-size:19px;line-height:1.55;font-weight:700;margin-bottom:18px;white-space:pre-wrap}
 .opt{display:block;width:100%;text-align:left;margin:10px 0;padding:14px;border:1px solid var(--line);border-radius:13px;background:#fff;line-height:1.45}
-.opt:hover{border-color:#aab2c5} .opt.disabled{cursor:default} .opt.correct{border-color:#12b76a;background:#ecfdf3} .opt.wrong{border-color:#f04438;background:#fef3f2}
-.badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:700} .ok{background:#ecfdf3;color:var(--ok)} .bad{background:#fef3f2;color:var(--bad)}
-.feedback{margin-top:14px;padding:12px;border-radius:12px;line-height:1.5} .feedback.ok{border:1px solid #abefc6} .feedback.bad{border:1px solid #fecdca}
-.nav{display:flex;gap:10px;margin-top:16px} .nav button{flex:1}
-.result{text-align:center;padding:22px} .score{font-size:42px;font-weight:800;margin:8px 0}
-.small{font-size:13px;color:var(--muted)} .hide{display:none} .progress{height:7px;background:#eaecf0;border-radius:99px;overflow:hidden;margin-top:10px} .bar{height:100%;background:var(--accent);width:0}
-@media(max-width:520px){.wrap{padding:12px 10px 30px} .q{font-size:18px} .card{padding:16px}}
+.opt:hover{border-color:#aab2c5}
+.opt.disabled{cursor:default}
+.opt.correct{border-color:#12b76a;background:#ecfdf3}
+.opt.wrong{border-color:#f04438;background:#fef3f2}
+.badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:700}
+.ok{background:#ecfdf3;color:var(--ok)}
+.bad{background:#fef3f2;color:var(--bad)}
+.feedback{margin-top:14px;padding:12px;border-radius:12px;line-height:1.5}
+.feedback.ok{border:1px solid #abefc6}
+.feedback.bad{border:1px solid #fecdca}
+.nav{display:flex;gap:10px;margin-top:16px}
+.nav button{flex:1}
+.result{text-align:center;padding:22px}
+.score{font-size:42px;font-weight:800;margin:8px 0}
+.small{font-size:13px;color:var(--muted)}
+.hide{display:none}
+.progress{height:7px;background:#eaecf0;border-radius:99px;overflow:hidden;margin-top:10px}
+.bar{height:100%;background:var(--accent);width:0;transition:width .2s}
+.chapter-list{display:grid;gap:10px}
+.chapter-btn{text-align:left;padding:14px}
+.chapter-btn strong{display:block;margin-bottom:3px}
+.chapter-btn span{font-size:13px;color:var(--muted)}
+.review-title{font-size:20px;font-weight:800;margin-bottom:6px}
+.review-count{color:var(--muted);font-size:14px}
+@media(max-width:520px){
+  .wrap{padding:12px 10px 30px}
+  .q{font-size:18px}
+  .card{padding:16px}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header><h1>📝 MCQ Kinh tế chính trị</h1><div class="sub">Bộ câu 31–70 từ file bạn gửi • đáp án theo phần được khoanh trong bản scan</div></header>
+<header>
+  <h1>📝 MCQ Kinh tế chính trị</h1>
+  <div class="sub">Luyện đề theo từng chương • có review câu sai</div>
+</header>
 
-<div class="panel">
-<div class="row">
-<label>Chế độ:
-<select id="mode"><option value="all">Làm tất cả 40 câu</option><option value="20">20 câu ngẫu nhiên</option><option value="10">10 câu ngẫu nhiên</option></select>
-</label>
-<label><input id="shuffle" type="checkbox" checked> Đảo thứ tự câu</label>
-<button class="primary" id="start">Bắt đầu / Làm lại</button>
-</div>
-<div class="progress"><div class="bar" id="bar"></div></div>
+<div id="home" class="panel">
+  <div class="row" style="margin-bottom:12px">
+    <strong>📚 Chọn chương</strong>
+  </div>
+  <div id="chapters" class="chapter-list"></div>
 </div>
 
-<div id="quiz" class="card"></div>
+<div id="setup" class="panel hide">
+  <div class="row">
+    <label>Chế độ:
+      <select id="mode">
+        <option value="all">Làm tất cả</option>
+        <option value="20">20 câu ngẫu nhiên</option>
+        <option value="10">10 câu ngẫu nhiên</option>
+      </select>
+    </label>
+    <label><input id="shuffle" type="checkbox" checked> Đảo thứ tự câu</label>
+    <button id="start" class="primary">Bắt đầu / Làm lại</button>
+    <button id="backHome">← Chọn chương</button>
+  </div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+</div>
+
+<div id="quiz" class="card hide"></div>
 </div>
 
 <script>
-const BANK=[{"n": 31, "q": "Các hiện tượng kinh tế đều bị chi phối bởi:", "o": ["Quy luật kinh tế", "Nhà nước", "Con người", "Chính sách kinh tế"], "a": 0}, {"n": 32, "q": "Ai là người sử dụng thuật ngữ “kinh tế chính trị” lần đầu tiên:", "o": ["Francois Quesnay", "William Petty", "Thomas Mun", "Antoine Montchretien"], "a": 3}, {"n": 33, "q": "Nhận định SAI về chính sách kinh tế:", "o": ["Khi chính sách kinh tế không phù hợp với quy luật kinh tế khách quan thì chủ thể ban hành có thể ban hành chính sách khác để thay thế", "Chính sách kinh tế có thể phù hợp hoặc không phù hợp với quy luật kinh tế khách quan", "Quy luật kinh tế tác động vào các quan hệ lợi ích còn chính sách kinh tế tác động vào hành vi kinh doanh của các chủ thể kinh tế", "Là sản phẩm chủ quan của con người hình thành trên cơ sở vận dụng các quy luật kinh tế"], "a": 2}, {"n": 34, "q": "Quy luật kinh tế phát huy tác động đến nền kinh tế thông qua:", "o": ["Chính sách kinh tế", "Khoa học kinh tế chính trị", "Hoạt động có ý thức của con người trong lĩnh vực kinh tế", "Sự tác động của kiến trúc thượng tầng lên những quan hệ sản xuất tương ứng"], "a": 2}, {"n": 35, "q": "Nhận định SAI về quy luật kinh tế là:", "o": ["Con người không thể thay đổi quy luật kinh tế", "Quy luật kinh tế là sản phẩm chủ quan của con người", "Quy luật kinh tế tồn tại khách quan", "Quy luật kinh tế tác động thông qua hoạt động có ý thức của con người"], "a": 3}, {"n": 36, "q": "Các lý thuyết kinh tế hướng vào phê phán những khuyết tật của chủ nghĩa tư bản trên cơ sở tình cảm cá nhân mà không chỉ ra những quy luật kinh tế được gọi là:", "o": ["Kinh tế chính trị macxit", "Các tư tưởng của các nhà chủ nghĩa xã hội không tưởng", "Kinh tế chính trị Mác - Lenin", "Kinh tế chính trị tầm thường"], "a": 1}, {"n": 37, "q": "Nhận định ĐÚNG về kinh tế chính trị Mác - Lênin là:", "o": ["Mục đích xuyên suốt của kinh tế chính trị Mác - Lênin là thúc đẩy sự giàu có của mỗi người dân và xã hội", "Kinh tế chính trị Mác - Lênin không phải là khoa học về kinh tế hàng hóa của tư bản chủ nghĩa", "Nhiệm vụ của kinh tế chính trị Mác - Lênin là thúc đẩy sự phát triển kinh tế hàng hóa giai đoạn tư bản chủ nghĩa", "Kinh tế chính trị Mác - Lênin hình thành nhằm mục đích giải quyết các mâu thuẫn trong lĩnh vực kinh tế để củng cố và duy trì sự tồn tại và phát triển của chủ nghĩa tư bản"], "a": 1}, {"n": 38, "q": "“Góp phần xây dựng nền tảng tư tưởng mới cho những người lao động tiến bộ biết quý trọng thành quả lao động, yêu chuộng hòa bình, củng cố niềm tin cho mục tiêu xây dựng thành công xã hội chủ nghĩa”. Nhận định này nói đến:", "o": ["Chức năng thực tiễn", "Chức năng tư tưởng", "Chức năng phương pháp luận", "Chức năng nhận thức"], "a": 1}, {"n": 39, "q": "Chức năng cơ bản của kinh tế chính trị Mác - Lênin là:", "o": ["Chức năng khoa học", "Chức năng giai cấp", "Chức năng kinh tế", "Chức năng tư tưởng"], "a": 3}, {"n": 40, "q": "V.I. Lênin mất vào năm:", "o": ["1923", "1921", "1925", "1924"], "a": 3}, {"n": 41, "q": "Có các nhận định về các trường phái kinh tế chính trị như sau: (1) Chủ nghĩa trọng thương phát triển hơn chủ nghĩa trọng nông khi chuyển đối tượng nghiên cứu từ lĩnh vực lưu thông sang lĩnh vực sản xuất; (2) Chủ nghĩa trọng nông là học thuyết kinh tế chính trị đầu tiên nghiên cứu về phương thức sản xuất tư bản chủ nghĩa. Trong đó:", "o": ["(1) và (2) đều sai", "(1) sai, (2) đúng", "(1) và (2) đều đúng", "(1) đúng, (2) sai"], "a": 0}, {"n": 42, "q": "Chủ nghĩa trọng thương xác định đối tượng nghiên cứu của mình trong lĩnh vực:", "o": ["Nền sản xuất", "Nông nghiệp", "Nội thương", "Ngoại thương"], "a": 3}, {"n": 43, "q": "Chủ nghĩa trọng nông xác định đối tượng nghiên cứu của mình trong lĩnh vực:", "o": ["Nền sản xuất", "Thương mại", "Nông nghiệp", "Thương mại (đặc biệt là ngoại thương)"], "a": 2}, {"n": 44, "q": "Phương pháp trừu tượng hóa khoa học là:", "o": ["Gạt bỏ những bộ phận phức tạp của đối tượng nghiên cứu", "Quá trình suy ngẫm về các hiện tượng kinh tế", "Gạt bỏ các hiện tượng ngẫu nhiên, bề ngoài, chỉ giữ lại những mối liên hệ phổ biến mang tính bản chất", "Kết hợp các hiện tượng kinh tế cụ thể để nêu lên quy luật cho nền kinh tế"], "a": 2}, {"n": 45, "q": "Có các nhận định về đối tượng nghiên cứu của các trường phái kinh tế chính trị như sau: (1) Chủ nghĩa trọng nông xác định đối tượng nghiên cứu của mình là hoạt động sản xuất nông nghiệp; (2) Kinh tế chính trị cổ điển Anh đã đề cập đến các phạm trù quan trọng của nền kinh tế như hàng hóa, giá trị, tính chất hai mặt của lao động sản xuất. Trong đó:", "o": ["(1) sai, (2) đúng", "(1) và (2) đều sai", "(1) đúng, (2) sai", "(1) và (2) đều đúng"], "a": 3}, {"n": 46, "q": "Theo A. Smith, chủ thể nghiên cứu kinh tế chính trị là:", "o": ["Các chủ doanh nghiệp", "Cả những nhà kinh tế học lẫn các nhà chính khách", "Các nhà chính khách hay nhà lập pháp", "Các nhà kinh tế học"], "a": 2}, {"n": 47, "q": "“Cung cấp hệ thống lý luận về sự vận động của các quan hệ xã hội trong sản xuất và trao đổi đặt trong mối liên hệ biện chứng với lực lượng sản xuất và kiến trúc thượng tầng”. Nhận định này nói đến:", "o": ["Chức năng thực tiễn", "Chức năng phương pháp luận", "Chức năng tư tưởng", "Chức năng nhận thức"], "a": 3}, {"n": 48, "q": "Nhận định sai về những kết quả nghiên cứu kinh tế chính trị của V.I. Lênin là:", "o": ["V.I. Lênin tiếp tục kế thừa, bổ sung, phát triển lý luận kinh tế chính trị theo phương pháp luận của Mác", "V.I. Lênin đã chỉ ra đặc điểm kinh tế của chủ nghĩa tư bản thời kỳ tích lũy nguyên thủy", "V.I. Lênin nghiên cứu những vấn đề kinh tế chính trị cơ bản của thời kỳ quá độ lên chủ nghĩa xã hội", "V.I. Lênin đã làm rõ đặc điểm kinh tế của chủ nghĩa tư bản giai đoạn cuối thế kỷ XIX, đầu thế kỷ XX"], "a": 1}, {"n": 49, "q": "“Là cơ sở lý luận để người lao động và những nhà hoạch định chính sách hình thành năng lực, kỹ năng vận dụng các quy luật kinh tế vào thực tiễn hoạt động lao động cũng như quản trị quốc gia”. Nhận định này nói đến:", "o": ["Chức năng phương pháp luận", "Chức năng tư tưởng", "Chức năng nhận thức", "Chức năng thực tiễn"], "a": 3}, {"n": 50, "q": "Thuật ngữ “kinh tế chính trị” xuất hiện lần đầu tiên trong tác phẩm:", "o": ["Cộng Hòa", "Chính trị luận", "Chuyên luận về kinh tế chính trị", "Của cải của các dân tộc"], "a": 2}, {"n": 51, "q": "Đặc điểm của quy luật kinh tế là:", "o": ["Phụ thuộc vào hoạt động có ý thức của con người", "Mang tính khách quan", "Có thể thay đổi được", "Mang tính chủ quan"], "a": 1}, {"n": 52, "q": "Chức năng cơ bản của kinh tế chính trị Mác - Lênin là:", "o": ["Chức năng giai cấp", "Chức năng chính trị", "Chức năng khoa học", "Chức năng nhận thức"], "a": 3}, {"n": 53, "q": "Phương pháp nghiên cứu quan trọng nhất của kinh tế chính trị Mác - Lênin là:", "o": ["Trừu tượng hóa khoa học", "Phân tích - tổng hợp", "Điều tra xã hội học", "Mô hình hóa"], "a": 0}, {"n": 54, "q": "Chức năng cơ bản của kinh tế chính trị Mác - Lênin là:", "o": ["Chức năng thực tiễn", "Chức năng khoa học", "Chức năng kinh tế", "Chức năng giai cấp"], "a": 0}, {"n": 55, "q": "Chức năng cơ bản của kinh tế chính trị Mác - Lênin, NGOẠI TRỪ:", "o": ["Chức năng phương pháp luận", "Chức năng giai cấp", "Chức năng tư tưởng", "Chức năng nhận thức"], "a": 1}, {"n": 56, "q": "Nhận định ĐÚNG về chính sách kinh tế:", "o": ["Chính sách kinh tế bắt buộc phải phù hợp với quy luật kinh tế khách quan", "Quy luật kinh tế có thể thay đổi được, còn chính sách kinh tế thuộc về vấn đề chính trị nên không được thay đổi", "Quy luật kinh tế tác động vào các quan hệ lợi ích còn chính sách kinh tế tác động vào hành vi kinh doanh của các chủ thể kinh tế", "Khi chính sách kinh tế không phù hợp với quy luật kinh tế khách quan thì chủ thể ban hành có thể ban hành chính sách khác để thay thế"], "a": 3}, {"n": 57, "q": "“Phương pháp được tiến hành bằng cách nhận ra và gạt bỏ khỏi quá trình nghiên cứu những yếu tố ngẫu nhiên, những hiện tượng tạm thời, gián tiếp và giữ lại những dấu hiệu điển hình, bền vững, ổn định trực tiếp của đối tượng nghiên cứu” được gọi là:", "o": ["Mô hình hóa", "Phân tích - tổng hợp", "Điều tra xã hội học", "Trừu tượng hóa khoa học"], "a": 3}, {"n": 58, "q": "Kinh tế chính trị Mác - Lênin đã kế thừa và phát triển trực tiếp những thành tựu của trường phái:", "o": ["Kinh tế chính trị tầm thường", "Chủ nghĩa trọng thương", "Kinh tế chính trị cổ điển Anh", "Chủ nghĩa trọng nông"], "a": 2}, {"n": 59, "q": "Vấn đề phân tích nguồn gốc và bản chất của cải và sự giàu có của quốc gia thuộc về trường phái:", "o": ["Kinh tế chính trị cổ điển Anh", "Chủ nghĩa trọng thương", "Kinh tế chính trị Mác - Lênin", "Chủ nghĩa trọng nông"], "a": 0}, {"n": 60, "q": "Hệ thống lý luận kinh tế chính trị đầu tiên nghiên cứu về nền sản xuất tư bản chủ nghĩa là:", "o": ["Kinh tế chính trị Mác - Lênin", "Kinh tế chính trị cổ điển Anh", "Chủ nghĩa trọng nông", "Chủ nghĩa trọng thương"], "a": 1}, {"n": 61, "q": "Công trình nghiên cứu, bổ sung và phát triển kinh tế chính trị Mác - Lênin sau khi V.I. Lênin mất cho đến ngày nay được gọi là:", "o": ["Kinh tế chính trị macxit", "Kinh tế chính trị tầm thường", "Kinh tế chính trị phi macxit", "Kinh tế chính trị tư bản chủ nghĩa"], "a": 2}, {"n": 62, "q": "Đặc điểm cơ bản của chủ nghĩa trọng nông là:", "o": ["Đề cao vai trò của hoạt động thương mại (đặc biệt là ngoại thương)", "Đề cao vai trò của hoạt động sản xuất công nghiệp", "Đề cao vai trò của hoạt động thương mại (đặc biệt là nội thương)", "Đề cao vai trò của hoạt động sản xuất nông nghiệp"], "a": 3}, {"n": 63, "q": "Tư tưởng nhấn mạnh vai trò của thương mại, đặc biệt là ngoại thương thuộc về trường phái:", "o": ["Kinh tế chính trị Mác - Lênin", "Kinh tế chính trị cổ điển Anh", "Chủ nghĩa trọng nông", "Chủ nghĩa trọng thương"], "a": 3}, {"n": 64, "q": "Nhận định ĐÚNG về đặc điểm của các lý thuyết kinh tế của các nhà tư tưởng xã hội chủ nghĩa không tưởng và kinh tế chính trị tiểu tư sản là:", "o": ["Kế thừa những luận điểm khoa học, đi sâu vào bản chất của kinh tế chính trị cổ điển Anh để hình thành nên các luận điểm khoa học", "Các lý thuyết kinh tế hướng vào phê phán những khuyết tật của chủ nghĩa tư bản trên cơ sở tình cảm cá nhân mà không chỉ ra những quy luật kinh tế", "Kế thừa những luận điểm mang tính khái quát tâm lý, hành vi của kinh tế chính trị cổ điển Anh", "Hướng vào phê phán những khuyết tật của chủ nghĩa tư bản trên cơ sở tình cảm cá nhân"], "a": 1}, {"n": 65, "q": "Có các nhận định về đối tượng nghiên cứu của các trường phái kinh tế chính trị như sau: (1) Chủ nghĩa trọng thương đặc biệt đề cao vai trò của hoạt động thương mại; (2) Chủ nghĩa trọng nông đã đề cập đến các phạm trù quan trọng của nền kinh tế như hàng hóa, giá trị, tính chất hai mặt của lao động sản xuất. Trong đó:", "o": ["(1) sai, (2) đúng", "(1) và (2) đều đúng", "(1) đúng, (2) sai", "(1) và (2) đều sai"], "a": 2}, {"n": 66, "q": "Sự khác biệt về sự tác động của quy luật kinh tế và chính sách kinh tế đối với nền kinh tế là:", "o": ["Quy luật kinh tế có sự tác động mang tính chủ quan, còn chính sách kinh tế tác động mang tính khách quan", "Quy luật kinh tế có sự tác động mang tính khách quan, còn chính sách kinh tế tác động mang tính chủ quan", "Quy luật kinh tế tác động vào các quan hệ lợi ích còn chính sách kinh tế tác động vào hành vi kinh doanh của các chủ thể kinh tế", "Quy luật kinh tế có thể thay đổi được, còn chính sách kinh tế thuộc về vấn đề chính trị nên không được thay đổi"], "a": 1}, {"n": 67, "q": "Kinh tế chính trị là:", "o": ["Môn khoa học kinh tế nghiên cứu quan hệ giữa kinh tế và chính trị trong các hoạt động và quá trình kinh tế của con người", "Môn khoa học nghiên cứu các quan hệ kinh tế để tìm ra các quy luật chi phối sự vận động của các hiện tượng và quá trình hoạt động kinh tế của con người", "Môn khoa học chính trị nghiên cứu quan hệ biện chứng giữa chính trị và kinh tế trong quá trình quản lý và điều tiết nền kinh tế của nhà nước", "Môn khoa học nghiên cứu các quan hệ kinh tế để tìm ra các quy luật chi phối sự vận động và phát triển của các sự vật, hiện tượng"], "a": 1}, {"n": 68, "q": "Theo C. Mác, ai là người sáng lập nền kinh tế chính trị tư sản cổ điển:", "o": ["A. Smith", "D. Ricardo", "W. Petty", "R. T. Malthus"], "a": 2}, {"n": 69, "q": "Điểm hạn chế cơ bản của chủ nghĩa trọng thương là:", "o": ["Chuyển đối tượng nghiên cứu từ lĩnh vực lưu thông sang lĩnh vực sản xuất", "Tuyệt đối hóa vai trò của sản xuất, xem nhẹ vai trò hoạt động thương mại", "Tuyệt đối hóa vai trò của hoạt động sản xuất nông nghiệp", "Tuyệt đối hóa vai trò của thương mại, xem nhẹ vai trò hoạt động sản xuất"], "a": 3}, {"n": 70, "q": "Đặc điểm cơ bản của chủ nghĩa trọng thương là:", "o": ["Đề cao vai trò của hoạt động sản xuất nông nghiệp", "Đề cao vai trò của hoạt động thương mại (đặc biệt là nội thương)", "Đề cao vai trò của hoạt động thương mại (đặc biệt là ngoại thương)", "Đề cao vai trò của hoạt động sản xuất công nghiệp"], "a": 2}];
-let set=[],idx=0,score=0,answered=false;
+/*
+  CẤU TRÚC DỮ LIỆU:
+  - Mỗi chương là một object trong CHAPTERS.
+  - Bạn chỉ cần thêm chương mới vào đây sau này.
+  - Câu hỏi có dạng: {n: số_câu_gốc, q: "...", o: ["A","B","C","D"], a: 0}
+*/
+const CHAPTERS = [
+  {
+    id: 1,
+    title: "Chương 1",
+    description: "40 câu hiện tại — câu gốc 31–70",
+    bank: [{"n": 31, "q": "Các hiện tượng kinh tế đều bị chi phối bởi:", "o": ["Quy luật kinh tế", "Nhà nước", "Con người", "Chính sách kinh tế"], "a": 0}, {"n": 32, "q": "Ai là người sử dụng thuật ngữ “kinh tế chính trị” lần đầu tiên:", "o": ["Francois Quesnay", "William Petty", "Thomas Mun", "Antoine Montchretien"], "a": 3}, {"n": 33, "q": "Nhận định SAI về chính sách kinh tế:", "o": ["Khi chính sách kinh tế không phù hợp với quy luật kinh tế khách quan thì chủ thể ban hành có thể ban hành chính sách khác để thay thế", "Chính sách kinh tế có thể phù hợp hoặc không phù hợp với quy luật kinh tế khách quan", "Quy luật kinh tế tác động vào các quan hệ lợi ích còn chính sách kinh tế tác động vào hành vi kinh doanh của các chủ thể kinh tế", "Là sản phẩm chủ quan của con người hình thành trên cơ sở vận dụng các quy luật kinh tế"], "a": 2}, {"n": 34, "q": "Quy luật kinh tế phát huy tác động đến nền kinh tế thông qua:", "o": ["Chính sách kinh tế", "Khoa học kinh tế chính trị", "Hoạt động có ý thức của con người trong lĩnh vực kinh tế", "Sự tác động của kiến trúc thượng tầng lên những quan hệ sản xuất tương ứng"], "a": 2}, {"n": 35, "q": "Nhận định SAI về quy luật kinh tế là:", "o": ["Con người không thể thay đổi quy luật kinh tế", "Quy luật kinh tế là sản phẩm chủ quan của con người", "Quy luật kinh tế tồn tại khách quan", "Quy luật kinh tế tác động thông qua hoạt động có ý thức của con người"], "a": 3}, {"n": 36, "q": "Các lý thuyết kinh tế hướng vào phê phán những khuyết tật của chủ nghĩa tư bản trên cơ sở tình cảm cá nhân mà không chỉ ra những quy luật kinh tế được gọi là:", "o": ["Kinh tế chính trị macxit", "Các tư tưởng của các nhà chủ nghĩa xã hội không tưởng", "Kinh tế chính trị Mác - Lenin", "Kinh tế chính trị tầm thường"], "a": 1}, {"n": 37, "q": "Nhận định ĐÚNG về kinh tế chính trị Mác - Lênin là:", "o": ["Mục đích xuyên suốt của kinh tế chính trị Mác - Lênin là thúc đẩy sự giàu có của mỗi người dân và xã hội", "Kinh tế chính trị Mác - Lênin không phải là khoa học về kinh tế hàng hóa của tư bản chủ nghĩa", "Nhiệm vụ của kinh tế chính trị Mác - Lênin là thúc đẩy sự phát triển kinh tế hàng hóa giai đoạn tư bản chủ nghĩa", "Kinh tế chính trị Mác - Lênin hình thành nhằm mục đích giải quyết các mâu thuẫn trong lĩnh vực kinh tế để củng cố và duy trì sự tồn tại và phát triển của chủ nghĩa tư bản"], "a": 1}, {"n": 38, "q": "“Góp phần xây dựng nền tảng tư tưởng mới cho những người lao động tiến bộ biết quý trọng thành quả lao động, yêu chuộng hòa bình, củng cố niềm tin cho mục tiêu xây dựng thành công xã hội chủ nghĩa”. Nhận định này nói đến:", "o": ["Chức năng thực tiễn", "Chức năng tư tưởng", "Chức năng phương pháp luận", "Chức năng nhận thức"], "a": 1}, {"n": 39, "q": "Chức năng cơ bản của kinh tế chính trị Mác - Lênin là:", "o": ["Chức năng khoa học", "Chức năng giai cấp", "Chức năng kinh tế", "Chức năng tư tưởng"], "a": 3}, {"n": 40, "q": "V.I. Lênin mất vào năm:", "o": ["1923", "1921", "1925", "1924"], "a": 3}, {"n": 41, "q": "Có các nhận định về các trường phái kinh tế chính trị như sau: (1) Chủ nghĩa trọng thương phát triển hơn chủ nghĩa trọng nông khi chuyển đối tượng nghiên cứu từ lĩnh vực lưu thông sang lĩnh vực sản xuất; (2) Chủ nghĩa trọng nông là học thuyết kinh tế chính trị đầu tiên nghiên cứu về phương thức sản xuất tư bản chủ nghĩa. Trong đó:", "o": ["(1) và (2) đều sai", "(1) sai, (2) đúng", "(1) và (2) đều đúng", "(1) đúng, (2) sai"], "a": 0}, {"n": 42, "q": "Chủ nghĩa trọng thương xác định đối tượng nghiên cứu của mình trong lĩnh vực:", "o": ["Nền sản xuất", "Nông nghiệp", "Nội thương", "Ngoại thương"], "a": 3}, {"n": 43, "q": "Chủ nghĩa trọng nông xác định đối tượng nghiên cứu của mình trong lĩnh vực:", "o": ["Nền sản xuất", "Thương mại", "Nông nghiệp", "Thương mại (đặc biệt là ngoại thương)"], "a": 2}, {"n": 44, "q": "Phương pháp trừu tượng hóa khoa học là:", "o": ["Gạt bỏ những bộ phận phức tạp của đối tượng nghiên cứu", "Quá trình suy ngẫm về các hiện tượng kinh tế", "Gạt bỏ các hiện tượng ngẫu nhiên, bề ngoài, chỉ giữ lại những mối liên hệ phổ biến mang tính bản chất", "Kết hợp các hiện tượng kinh tế cụ thể để nêu lên quy luật cho nền kinh tế"], "a": 2}, {"n": 45, "q": "Có các nhận định về đối tượng nghiên cứu của các trường phái kinh tế chính trị như sau: (1) Chủ nghĩa trọng nông xác định đối tượng nghiên cứu của mình là hoạt động sản xuất nông nghiệp; (2) Kinh tế chính trị cổ điển Anh đã đề cập đến các phạm trù quan trọng của nền kinh tế như hàng hóa, giá trị, tính chất hai mặt của lao động sản xuất. Trong đó:", "o": ["(1) sai, (2) đúng", "(1) và (2) đều sai", "(1) đúng, (2) sai", "(1) và (2) đều đúng"], "a": 3}, {"n": 46, "q": "Theo A. Smith, chủ thể nghiên cứu kinh tế chính trị là:", "o": ["Các chủ doanh nghiệp", "Cả những nhà kinh tế học lẫn các nhà chính khách", "Các nhà chính khách hay nhà lập pháp", "Các nhà kinh tế học"], "a": 2}, {"n": 47, "q": "“Cung cấp hệ thống lý luận về sự vận động của các quan hệ xã hội trong sản xuất và trao đổi đặt trong mối liên hệ biện chứng với lực lượng sản xuất và kiến trúc thượng tầng”. Nhận định này nói đến:", "o": ["Chức năng thực tiễn", "Chức năng phương pháp luận", "Chức năng tư tưởng", "Chức năng nhận thức"], "a": 3}, {"n": 48, "q": "Nhận định sai về những kết quả nghiên cứu kinh tế chính trị của V.I. Lênin là:", "o": ["V.I. Lênin tiếp tục kế thừa, bổ sung, phát triển lý luận kinh tế chính trị theo phương pháp luận của Mác", "V.I. Lênin đã chỉ ra đặc điểm kinh tế của chủ nghĩa tư bản thời kỳ tích lũy nguyên thủy", "V.I. Lênin nghiên cứu những vấn đề kinh tế chính trị cơ bản của thời kỳ quá độ lên chủ nghĩa xã hội", "V.I. Lênin đã làm rõ đặc điểm kinh tế của chủ nghĩa tư bản giai đoạn cuối thế kỷ XIX, đầu thế kỷ XX"], "a": 1}, {"n": 49, "q": "“Là cơ sở lý luận để người lao động và những nhà hoạch định chính sách hình thành năng lực, kỹ năng vận dụng các quy luật kinh tế vào thực tiễn hoạt động lao động cũng như quản trị quốc gia”. Nhận định này nói đến:", "o": ["Chức năng phương pháp luận", "Chức năng tư tưởng", "Chức năng nhận thức", "Chức năng thực tiễn"], "a": 3}, {"n": 50, "q": "Thuật ngữ “kinh tế chính trị” xuất hiện lần đầu tiên trong tác phẩm:", "o": ["Cộng Hòa", "Chính trị luận", "Chuyên luận về kinh tế chính trị", "Của cải của các dân tộc"], "a": 2}, {"n": 51, "q": "Đặc điểm của quy luật kinh tế là:", "o": ["Phụ thuộc vào hoạt động có ý thức của con người", "Mang tính khách quan", "Có thể thay đổi được", "Mang tính chủ quan"], "a": 1}, {"n": 52, "q": "Chức năng cơ bản của kinh tế chính trị Mác - Lênin là:", "o": ["Chức năng giai cấp", "Chức năng chính trị", "Chức năng khoa học", "Chức năng nhận thức"], "a": 3}, {"n": 53, "q": "Phương pháp nghiên cứu quan trọng nhất của kinh tế chính trị Mác - Lênin là:", "o": ["Trừu tượng hóa khoa học", "Phân tích - tổng hợp", "Điều tra xã hội học", "Mô hình hóa"], "a": 0}, {"n": 54, "q": "Chức năng cơ bản của kinh tế chính trị Mác - Lênin là:", "o": ["Chức năng thực tiễn", "Chức năng khoa học", "Chức năng kinh tế", "Chức năng giai cấp"], "a": 0}, {"n": 55, "q": "Chức năng cơ bản của kinh tế chính trị Mác - Lênin, NGOẠI TRỪ:", "o": ["Chức năng phương pháp luận", "Chức năng giai cấp", "Chức năng tư tưởng", "Chức năng nhận thức"], "a": 1}, {"n": 56, "q": "Nhận định ĐÚNG về chính sách kinh tế:", "o": ["Chính sách kinh tế bắt buộc phải phù hợp với quy luật kinh tế khách quan", "Quy luật kinh tế có thể thay đổi được, còn chính sách kinh tế thuộc về vấn đề chính trị nên không được thay đổi", "Quy luật kinh tế tác động vào các quan hệ lợi ích còn chính sách kinh tế tác động vào hành vi kinh doanh của các chủ thể kinh tế", "Khi chính sách kinh tế không phù hợp với quy luật kinh tế khách quan thì chủ thể ban hành có thể ban hành chính sách khác để thay thế"], "a": 3}, {"n": 57, "q": "“Phương pháp được tiến hành bằng cách nhận ra và gạt bỏ khỏi quá trình nghiên cứu những yếu tố ngẫu nhiên, những hiện tượng tạm thời, gián tiếp và giữ lại những dấu hiệu điển hình, bền vững, ổn định trực tiếp của đối tượng nghiên cứu” được gọi là:", "o": ["Mô hình hóa", "Phân tích - tổng hợp", "Điều tra xã hội học", "Trừu tượng hóa khoa học"], "a": 3}, {"n": 58, "q": "Kinh tế chính trị Mác - Lênin đã kế thừa và phát triển trực tiếp những thành tựu của trường phái:", "o": ["Kinh tế chính trị tầm thường", "Chủ nghĩa trọng thương", "Kinh tế chính trị cổ điển Anh", "Chủ nghĩa trọng nông"], "a": 2}, {"n": 59, "q": "Vấn đề phân tích nguồn gốc và bản chất của cải và sự giàu có của quốc gia thuộc về trường phái:", "o": ["Kinh tế chính trị cổ điển Anh", "Chủ nghĩa trọng thương", "Kinh tế chính trị Mác - Lênin", "Chủ nghĩa trọng nông"], "a": 0}, {"n": 60, "q": "Hệ thống lý luận kinh tế chính trị đầu tiên nghiên cứu về nền sản xuất tư bản chủ nghĩa là:", "o": ["Kinh tế chính trị Mác - Lênin", "Kinh tế chính trị cổ điển Anh", "Chủ nghĩa trọng nông", "Chủ nghĩa trọng thương"], "a": 1}, {"n": 61, "q": "Công trình nghiên cứu, bổ sung và phát triển kinh tế chính trị Mác - Lênin sau khi V.I. Lênin mất cho đến ngày nay được gọi là:", "o": ["Kinh tế chính trị macxit", "Kinh tế chính trị tầm thường", "Kinh tế chính trị phi macxit", "Kinh tế chính trị tư bản chủ nghĩa"], "a": 2}, {"n": 62, "q": "Đặc điểm cơ bản của chủ nghĩa trọng nông là:", "o": ["Đề cao vai trò của hoạt động thương mại (đặc biệt là ngoại thương)", "Đề cao vai trò của hoạt động sản xuất công nghiệp", "Đề cao vai trò của hoạt động thương mại (đặc biệt là nội thương)", "Đề cao vai trò của hoạt động sản xuất nông nghiệp"], "a": 3}, {"n": 63, "q": "Tư tưởng nhấn mạnh vai trò của thương mại, đặc biệt là ngoại thương thuộc về trường phái:", "o": ["Kinh tế chính trị Mác - Lênin", "Kinh tế chính trị cổ điển Anh", "Chủ nghĩa trọng nông", "Chủ nghĩa trọng thương"], "a": 3}, {"n": 64, "q": "Nhận định ĐÚNG về đặc điểm của các lý thuyết kinh tế của các nhà tư tưởng xã hội chủ nghĩa không tưởng và kinh tế chính trị tiểu tư sản là:", "o": ["Kế thừa những luận điểm khoa học, đi sâu vào bản chất của kinh tế chính trị cổ điển Anh để hình thành nên các luận điểm khoa học", "Các lý thuyết kinh tế hướng vào phê phán những khuyết tật của chủ nghĩa tư bản trên cơ sở tình cảm cá nhân mà không chỉ ra những quy luật kinh tế", "Kế thừa những luận điểm mang tính khái quát tâm lý, hành vi của kinh tế chính trị cổ điển Anh", "Hướng vào phê phán những khuyết tật của chủ nghĩa tư bản trên cơ sở tình cảm cá nhân"], "a": 1}, {"n": 65, "q": "Có các nhận định về đối tượng nghiên cứu của các trường phái kinh tế chính trị như sau: (1) Chủ nghĩa trọng thương đặc biệt đề cao vai trò của hoạt động thương mại; (2) Chủ nghĩa trọng nông đã đề cập đến các phạm trù quan trọng của nền kinh tế như hàng hóa, giá trị, tính chất hai mặt của lao động sản xuất. Trong đó:", "o": ["(1) sai, (2) đúng", "(1) và (2) đều đúng", "(1) đúng, (2) sai", "(1) và (2) đều sai"], "a": 2}, {"n": 66, "q": "Sự khác biệt về sự tác động của quy luật kinh tế và chính sách kinh tế đối với nền kinh tế là:", "o": ["Quy luật kinh tế có sự tác động mang tính chủ quan, còn chính sách kinh tế tác động mang tính khách quan", "Quy luật kinh tế có sự tác động mang tính khách quan, còn chính sách kinh tế tác động mang tính chủ quan", "Quy luật kinh tế tác động vào các quan hệ lợi ích còn chính sách kinh tế tác động vào hành vi kinh doanh của các chủ thể kinh tế", "Quy luật kinh tế có thể thay đổi được, còn chính sách kinh tế thuộc về vấn đề chính trị nên không được thay đổi"], "a": 1}, {"n": 67, "q": "Kinh tế chính trị là:", "o": ["Môn khoa học kinh tế nghiên cứu quan hệ giữa kinh tế và chính trị trong các hoạt động và quá trình kinh tế của con người", "Môn khoa học nghiên cứu các quan hệ kinh tế để tìm ra các quy luật chi phối sự vận động của các hiện tượng và quá trình hoạt động kinh tế của con người", "Môn khoa học chính trị nghiên cứu quan hệ biện chứng giữa chính trị và kinh tế trong quá trình quản lý và điều tiết nền kinh tế của nhà nước", "Môn khoa học nghiên cứu các quan hệ kinh tế để tìm ra các quy luật chi phối sự vận động và phát triển của các sự vật, hiện tượng"], "a": 1}, {"n": 68, "q": "Theo C. Mác, ai là người sáng lập nền kinh tế chính trị tư sản cổ điển:", "o": ["A. Smith", "D. Ricardo", "W. Petty", "R. T. Malthus"], "a": 2}, {"n": 69, "q": "Điểm hạn chế cơ bản của chủ nghĩa trọng thương là:", "o": ["Chuyển đối tượng nghiên cứu từ lĩnh vực lưu thông sang lĩnh vực sản xuất", "Tuyệt đối hóa vai trò của sản xuất, xem nhẹ vai trò hoạt động thương mại", "Tuyệt đối hóa vai trò của hoạt động sản xuất nông nghiệp", "Tuyệt đối hóa vai trò của thương mại, xem nhẹ vai trò hoạt động sản xuất"], "a": 3}, {"n": 70, "q": "Đặc điểm cơ bản của chủ nghĩa trọng thương là:", "o": ["Đề cao vai trò của hoạt động sản xuất nông nghiệp", "Đề cao vai trò của hoạt động thương mại (đặc biệt là nội thương)", "Đề cao vai trò của hoạt động thương mại (đặc biệt là ngoại thương)", "Đề cao vai trò của hoạt động sản xuất công nghiệp"], "a": 2}]
+  },
+  // Thêm chương sau này theo mẫu:
+  // {
+  //   id: 2,
+  //   title: "Chương 2",
+  //   description: "Hàng hóa, thị trường và vai trò của các chủ thể tham gia thị trường",
+  //   bank: [
+  //     {n: 1, q: "Nội dung câu hỏi...", o: ["...", "...", "...", "..."], a: 0},
+  //     ...
+  //   ]
+  // },
+  // {
+  //   id: 3,
+  //   title: "Chương 3",
+  //   description: "Giá trị thặng dư trong nền kinh tế thị trường",
+  //   bank: [...]
+  // }
+];
 
-function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+let currentChapter = null;
+let set = [];
+let idx = 0;
+let score = 0;
+let answered = false;
+let wrongQuestions = [];
+let isReview = false;
+
+const $ = id => document.getElementById(id);
+
+function shuffle(a){
+  // Fisher-Yates: random ổn định hơn sort(() => Math.random() - .5)
+  const out = [...a];
+  for(let i=out.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [out[i],out[j]]=[out[j],out[i]];
+  }
+  return out;
+}
+
+function renderChapters(){
+  $("chapters").innerHTML = CHAPTERS.map(ch => `
+    <button class="chapter-btn" onclick="selectChapter(${ch.id})">
+      <strong>${esc(ch.title)}</strong>
+      <span>${esc(ch.description)} • ${ch.bank.length} câu</span>
+    </button>
+  `).join("");
+}
+
+function selectChapter(id){
+  currentChapter = CHAPTERS.find(ch => ch.id === id);
+  if(!currentChapter) return;
+
+  $("home").classList.add("hide");
+  $("setup").classList.remove("hide");
+  $("quiz").classList.add("hide");
+
+  $("mode").innerHTML = `
+    <option value="all">Làm tất cả ${currentChapter.bank.length} câu</option>
+    <option value="20">20 câu ngẫu nhiên</option>
+    <option value="10">10 câu ngẫu nhiên</option>
+  `;
+  // Nếu chương ít hơn 20/10 câu thì vẫn giữ UI nhưng start() sẽ giới hạn theo số câu có thật.
+  $("bar").style.width = "0%";
+}
+
+function goHome(){
+  currentChapter = null;
+  set = [];
+  wrongQuestions = [];
+  isReview = false;
+  $("setup").classList.add("hide");
+  $("quiz").classList.add("hide");
+  $("home").classList.remove("hide");
+}
+
 function start(){
-  const mode=document.getElementById('mode').value;
-  set=mode==='all'?[...BANK] : shuffle(BANK).slice(0,+mode);
-  if(document.getElementById('shuffle').checked && mode==='all') set=shuffle(set);
-  idx=0;score=0;render();
+  if(!currentChapter) return;
+
+  isReview = false;
+  const mode = $("mode").value;
+  const count = mode === "all" ? currentChapter.bank.length : Math.min(+mode, currentChapter.bank.length);
+
+  set = mode === "all"
+    ? [...currentChapter.bank]
+    : shuffle(currentChapter.bank).slice(0, count);
+
+  if($("shuffle").checked) set = shuffle(set);
+
+  idx = 0;
+  score = 0;
+  wrongQuestions = [];
+  $("quiz").classList.remove("hide");
+  render();
 }
+
 function render(){
- const x=set[idx]; answered=false;
- document.getElementById('bar').style.width=((idx)/set.length*100)+'%';
- let opts=x.o.map((t,i)=>`<button class="opt" onclick="choose(${i})"><b>${String.fromCharCode(65+i)}.</b> ${esc(t)}</button>`).join('');
- document.getElementById('quiz').innerHTML=`
-  <div class="top"><span>Câu ${idx+1} / ${set.length}</span><span>Gốc: câu ${x.n}</span></div>
-  <div class="q">${esc(x.q)}</div>${opts}
-  <div id="fb"></div>
-  <div class="nav"><button onclick="prev()" ${idx===0?'disabled':''}>← Câu trước</button><button class="primary" onclick="next()">Câu tiếp →</button></div>`;
+  const x = set[idx];
+  if(!x) return;
+
+  answered = false;
+  $("bar").style.width = (idx/set.length*100) + "%";
+
+  const opts = x.o.map((t,i) =>
+    `<button class="opt" onclick="choose(${i})"><b>${String.fromCharCode(65+i)}.</b> ${esc(t)}</button>`
+  ).join("");
+
+  $("quiz").innerHTML = `
+    <div class="top">
+      <span>${isReview ? "Review câu sai" : `Câu ${idx+1} / ${set.length}`}</span>
+      <span>Gốc: câu ${x.n}</span>
+    </div>
+    <div class="q">${esc(x.q)}</div>
+    ${opts}
+    <div id="fb"></div>
+    <div class="nav">
+      <button onclick="prev()" ${idx===0?'disabled':''}>← Câu trước</button>
+      <button class="primary" onclick="next()">${idx===set.length-1 ? "Hoàn thành" : "Câu tiếp →"}</button>
+    </div>`;
 }
+
 function choose(i){
- if(answered)return; answered=true;
- const x=set[idx]; const buttons=[...document.querySelectorAll('.opt')];
- buttons.forEach((b,k)=>{b.classList.add('disabled');if(k===x.a)b.classList.add('correct');});
- if(i===x.a){score++; document.getElementById('fb').innerHTML='<div class="feedback ok"><span class="badge ok">✓ ĐÚNG</span> Chính xác!</div>';}
- else {buttons[i].classList.add('wrong'); document.getElementById('fb').innerHTML=`<div class="feedback bad"><span class="badge bad">✗ SAI</span> Đáp án đúng: <b>${String.fromCharCode(65+x.a)}</b>.</div>`;}
+  if(answered) return;
+  answered = true;
+
+  const x = set[idx];
+  const buttons = [...document.querySelectorAll(".opt")];
+
+  buttons.forEach((b,k)=>{
+    b.classList.add("disabled");
+    if(k===x.a) b.classList.add("correct");
+  });
+
+  if(i===x.a){
+    score++;
+    $("fb").innerHTML =
+      '<div class="feedback ok"><span class="badge ok">✓ ĐÚNG</span> Chính xác!</div>';
+  }else{
+    // Lưu câu sai một lần duy nhất trong lượt làm hiện tại.
+    wrongQuestions.push({
+      question: x,
+      selected: i
+    });
+    buttons[i].classList.add("wrong");
+    $("fb").innerHTML =
+      `<div class="feedback bad"><span class="badge bad">✗ SAI</span> Đáp án đúng: <b>${String.fromCharCode(65+x.a)}</b>.</div>`;
+  }
 }
-function next(){if(idx<set.length-1){idx++;render()}else result()}
-function prev(){if(idx>0){idx--;render()}}
+
+function next(){
+  if(!answered){
+    $("fb").innerHTML =
+      '<div class="feedback bad"><span class="badge bad">⚠ Chưa chọn đáp án</span> Hãy chọn một đáp án trước khi tiếp tục.</div>';
+    return;
+  }
+
+  if(idx < set.length-1){
+    idx++;
+    render();
+  }else{
+    result();
+  }
+}
+
+function prev(){
+  if(idx>0){
+    idx--;
+    render();
+  }
+}
+
 function result(){
- document.getElementById('bar').style.width='100%';
- const pct=Math.round(score/set.length*100);
- document.getElementById('quiz').innerHTML=`<div class="result"><div class="small">HOÀN THÀNH</div><div class="score">${score}/${set.length}</div><div>${pct}% câu đúng</div><div class="nav"><button onclick="start()">Làm lại</button></div></div>`;
+  $("bar").style.width = "100%";
+
+  const pct = Math.round(score/set.length*100);
+
+  $("quiz").innerHTML = `
+    <div class="result">
+      <div class="small">HOÀN THÀNH • ${esc(currentChapter.title)}</div>
+      <div class="score">${score}/${set.length}</div>
+      <div>${pct}% câu đúng</div>
+
+      <div class="nav">
+        ${wrongQuestions.length
+          ? `<button class="primary" onclick="startReview()">🔄 Review ${wrongQuestions.length} câu sai</button>`
+          : `<button class="primary" disabled>✓ Không có câu sai</button>`}
+        <button onclick="start()">📝 Làm lại</button>
+      </div>
+
+      <div class="nav">
+        <button onclick="selectChapter(${currentChapter.id})">⚙ Đổi chế độ</button>
+        <button onclick="goHome()">📚 Chọn chương</button>
+      </div>
+    </div>`;
 }
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-document.getElementById('start').onclick=start;
-start();
+
+function startReview(){
+  if(!wrongQuestions.length) return;
+
+  isReview = true;
+  set = wrongQuestions.map(item => item.question);
+  idx = 0;
+  score = 0;
+  wrongQuestions = [];
+
+  $("quiz").classList.remove("hide");
+  render();
+}
+
+function esc(s){
+  return String(s).replace(/[&<>"']/g,m=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#039;'
+  }[m]));
+}
+
+$("start").onclick = start;
+$("backHome").onclick = goHome;
+
+renderChapters();
 </script>
 </body>
 </html>
